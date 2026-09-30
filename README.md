@@ -40,7 +40,7 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 
 **The threshold applied in both directions.** Eight of ten modes are actioned; two are recorded as acceptable with the reasoning stated. A sheet where everything triggers action is a sheet where the threshold is doing nothing.
 
-**Controls at the top of the hierarchy.** Three failure modes are controlled by inherent safety in the design — asymmetric keying so incorrect assembly is physically impossible, an oversized window so misalignment cannot obstruct flow, and header sizing so distribution is insensitive to tolerance — rather than by inspection or warnings.
+**Controls at the top of the hierarchy.** Four failure modes are controlled by inherent safety in the design — asymmetric keying so incorrect assembly is physically impossible, an oversized window so misalignment cannot obstruct flow, header sizing so distribution is insensitive to tolerance, and a vent at the highest point of the chamber so entrapped gas escapes by buoyancy rather than requiring detection and intervention — rather than by inspection or warnings. The vent control's dependence on orientation is recorded as an open verification item.
 
 **A hazard found that the risk file had missed.** Tracing each failure effect to the risk management file showed that biliary obstruction and bile contamination of the perfusate were not represented by any existing hazard. That is the reason to run a bottom-up analysis alongside a top-down one, and it is recorded in section 5.
 

@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Document number | ELAP-DFMEA-001 |
-| Revision | 1.0 |
+| Revision | 1.1 |
 | Prepared by | Raj Harsh |
 
 > Self-directed exercise on an independent design project. Not industry work. Not a controlled document under any quality system.
@@ -226,11 +226,11 @@ Fixed before scoring. An RPN is meaningless without a stated scale.
 | **Severity (S)** | 9 |
 | **Cause** | Flow path geometry contains high points or dead volumes not swept clear at the priming flow rate |
 | **Occurrence (O)** | 5 |
-| **Prevention control** | Flow path designed without high points or dead legs; priming port at the highest point of the circuit |
-| **Detection control** | Visual inspection of the transparent line section during priming; bubble detector on the outlet line |
+| **Prevention control** | Vent port located at the highest point of the chamber in the operating orientation, allowing buoyant gas to escape; flow path shaped without high points or dead volumes where gas could be retained; priming performed with the vent open |
+| **Detection control** | Visual confirmation of gas clearance through the chamber during priming; vent patency checked before each run |
 | **Detection (D)** | 4 |
 | **RPN** | **180** |
-| **Action** | Priming study to confirm no gas retention at the specified priming flow rate; define a priming procedure with a documented acceptance criterion |
+| **Action** | Priming study to confirm complete gas clearance through the vent at the specified priming flow rate and chamber orientation; define a priming procedure with a documented acceptance criterion; assess gas clearance under credible off-axis orientations |
 | **Owner** | R. Harsh |
 ---
 
@@ -275,7 +275,9 @@ Applying the rule: **eight of ten** failure modes are actioned. **DF-005 and DF-
 
 **Anatomical variability is an unstated design input.** Three failure modes — DF-007 (bile duct position), DF-009 (chamber envelope) and, indirectly, DF-003 — arise from the design being dimensioned around a single specimen geometry rather than the range of donor organs. This should be captured explicitly as a design input.
 
-**Three controls use inherent safety by design** rather than inspection or warning: the asymmetric keying feature in DF-003, the oversized cradle window in DF-006, and sizing the header so port restriction dominates flow distribution in DF-004. Under the ISO 14971 control hierarchy these rank above protective measures and information for safety.
+**Four controls use inherent safety by design** rather than inspection or warning: the asymmetric keying feature in DF-003, header sizing so distribution is insensitive to tolerance in DF-004, the oversized cradle window in DF-006, and in DF-010 a vent at the highest point of the chamber so entrapped gas escapes by buoyancy rather than requiring detection and intervention. Under the ISO 14971 control hierarchy these rank above protective measures and information for safety.
+
+**The vent control carries an orientation dependency.** Because it relies on buoyancy, the DF-010 control is effective only in the intended operating orientation. Gas clearance under credible off-axis orientations is identified as an open verification item.
 
 **Two recommended actions are executable now** against the existing CFD model: the worst-case tolerance study in DF-004 and the maximum-offset study in DF-006.
 
@@ -287,3 +289,12 @@ Applying the rule: **eight of ten** failure modes are actioned. **DF-005 and DF-
 - No physical units built or tested; all occurrence ratings are engineering judgement.
 - Selected principal functions only; not exhaustive.
 - Process failure modes, software behaviour and use-related errors are out of scope and are not analysed elsewhere for this project at present.
+
+---
+
+## Revision history
+
+| Rev | Description |
+|---|---|
+| 1.0 | Initial issue |
+| 1.1 | DF-010 prevention and detection controls corrected to reflect the vent-based design actually implemented, replacing a bubble-detector control carried over in error from a template. Section 7 updated accordingly, and the orientation dependency of the vent control recorded. |
