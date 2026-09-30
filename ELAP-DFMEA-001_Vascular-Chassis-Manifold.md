@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Document number | ELAP-DFMEA-001 |
-| Revision | 1.1 |
+| Revision | 1.2 |
 | Prepared by | Raj Harsh |
 
 > Self-directed exercise on an independent design project. Not industry work. Not a controlled document under any quality system.
@@ -23,6 +23,8 @@
 | **Team / reviewers** | Raj Harsh — sole analyst. Limitation: a design FMEA is normally conducted cross-functionally, across design, manufacturing, quality and clinical input. A single-analyst analysis is more exposed to blind spots, and this is recorded as a limitation of the exercise. |
 | **Action threshold rule applied** | Any failure mode with S ≥ 8 is actioned regardless of RPN. Any failure mode with RPN ≥ 100 is actioned. Any failure mode with S ≥ 7 and D ≥ 7 is actioned regardless of RPN. |
 | **Justification for that rule** | RPN alone is unsuitable as a sole decision rule. S, O and D are ordinal scales, so their product is not mathematically meaningful — an RPN of 100 arising from 10 × 10 × 1 describes a different problem from 5 × 5 × 4. High-severity modes are therefore actioned on severity, consistent with ISO 14971, which directs that risk be evaluated on the basis of severity where the probability of occurrence of harm cannot be reliably estimated. That is the situation here, since no physical units have been built or tested. AIAG-VDA's replacement of RPN with Action Priority reflects the same criticism in an automotive context; it is cited as supporting rationale only and is not a medical device requirement. |
+
+**Perfusion architecture.** Perfusate is pumped into the organ vasculature (portal vein and hepatic artery), passes through the organ, drains into the chamber as a bath, and returns to the circuit. The chamber is therefore downstream of the organ. A Ø5 mm filtered vent in the chamber lid serves three functions: pressure relief during filling, a sterile barrier, and filtered gas supply to the headspace.
 
 ---
 
@@ -217,20 +219,36 @@ Fixed before scoring. An RPN is meaningless without a stated scale.
 | **Action** | Define the chamber internal envelope from the anatomical range of donor organ sizes with a stated clearance margin, as a design input; verify by fit check with a maximum-size phantom |
 | **Owner** | R. Harsh |
 
-### DF-010 — Prime the fluid path without trapping air
+### DF-010 — Prevent gas in the perfusion inlet circuit from entering the organ vasculature
 
 | | |
 |---|---|
-| **Failure mode** | Air remains trapped in the manifold after priming |
-| **Effect** | Gas carried downstream into the perfusion circuit; air embolism; ischaemic damage to the organ |
+| **Failure mode** | Gas present in the perfusion inlet line reaches the portal vein or hepatic artery cannula |
+| **Effect** | Gas enters the organ vasculature; air embolism; ischaemic damage to the perfused tissue and loss of the graft |
 | **Severity (S)** | 9 |
-| **Cause** | Flow path geometry contains high points or dead volumes not swept clear at the priming flow rate |
+| **Cause** | Gas retained in the inlet circuit after priming; gas drawn in at a connector or through a loose fitting during operation; gas evolved from the perfusate on warming or pressure change |
 | **Occurrence (O)** | 5 |
-| **Prevention control** | Vent port located at the highest point of the chamber in the operating orientation, allowing buoyant gas to escape; flow path shaped without high points or dead volumes where gas could be retained; priming performed with the vent open |
-| **Detection control** | Visual confirmation of gas clearance through the chamber during priming; vent patency checked before each run |
+| **Prevention control** | None implemented. Priming is intended to clear the inlet circuit, but no priming procedure or air-clearance acceptance criterion has been defined, and no gas-removal feature exists in the inlet circuit. |
+| **Detection control** | None in the inlet circuit. The chamber vent addresses headspace gas only; the chamber is downstream of the organ and cannot intercept gas travelling up the inlet line. |
+| **Detection (D)** | 8 |
+| **RPN** | **360** |
+| **Action** | Design a gas control into the perfusion inlet circuit — a bubble trap upstream of the cannula, and/or inlet-line gas detection with a pump interlock. Define a priming procedure with a documented air-clearance acceptance criterion. Until implemented, this risk is not controlled. Highest-priority item in this analysis. |
+| **Owner** | R. Harsh |
+
+### DF-011 — Relieve chamber headspace pressure during filling and operation while maintaining a sterile barrier
+
+| | |
+|---|---|
+| **Failure mode** | Vent occluded, or vent filter blocked |
+| **Effect** | Chamber headspace pressure rises during filling; the raised pressure opposes hepatic venous drainage from the organ; venous outflow obstruction, vascular distension and oedema; in the limit, chamber pressurisation |
+| **Severity (S)** | 7 |
+| **Cause** | Filter media wetted by condensation or splash and blocked; vent bore or filter selected without reference to the gas displacement rate at maximum fill rate; particulate or protein fouling of the filter over a long run |
+| **Occurrence (O)** | 5 |
+| **Prevention control** | Vent bore and filter selected for the gas displacement rate at maximum fill rate with margin; hydrophobic filter media specified; vent positioned away from the splash zone |
+| **Detection control** | Chamber headspace pressure monitored against an expected range; fluid level behaviour observed during filling |
 | **Detection (D)** | 4 |
-| **RPN** | **180** |
-| **Action** | Priming study to confirm complete gas clearance through the vent at the specified priming flow rate and chamber orientation; define a priming procedure with a documented acceptance criterion; assess gas clearance under credible off-axis orientations |
+| **RPN** | **140** |
+| **Action** | Determine the maximum credible fill rate and the resulting gas displacement rate; specify vent bore and filter to pass that flow within a headspace pressure limit derived from tolerable hepatic venous back-pressure; verify by test (ELAP-VP-007). Fill rate is not yet determined and is recorded as an open input. |
 | **Owner** | R. Harsh |
 ---
 
@@ -240,7 +258,7 @@ Every failure effect constituting harm must appear in the risk management file (
 
 | DFMEA ID | Failure effect | Hazard | Carried across |
 |---|---|---|---|
-| DF-010 | Air embolism; ischaemic organ damage | HAZ-001 | Yes |
+| DF-010 | Air embolism in the organ vasculature; ischaemic damage | HAZ-001 | Yes |
 | DF-001 | Contamination of perfusate; infection risk | HAZ-003 | Yes |
 | DF-002 | Contamination of perfusate; infection risk | HAZ-003 | Yes |
 | DF-003 | Loss of perfusion; mechanical damage to organ | HAZ-004 | Yes |
@@ -250,6 +268,7 @@ Every failure effect constituting harm must appear in the risk management file (
 | DF-007 | Cholestatic injury; wrong viability assessment | HAZ-005 | Partial — see note |
 | DF-008 | Vascular distension; oedema; loss of perfusion | HAZ-004 | Yes |
 | DF-009 | Localised compression; regional ischaemia | HAZ-004 | Yes |
+| DF-011 | Venous outflow obstruction; distension and oedema | HAZ-004 | Yes |
 
 **Note on DF-007.** HAZ-005 (erroneous measurement) covers the loss of bile output as a viability indicator. It does not cover biliary back-pressure causing cholestatic injury, nor bile leakage into the perfusate where bile salts are cytotoxic. These effects are not represented by any existing hazard in ELAP-RMF-001. A new hazard, HAZ-006 — biliary obstruction and bile contamination of the perfusate — is required. **Identified by this DFMEA.**
 
@@ -267,28 +286,49 @@ A failure mode is actioned if **any** of the following is true:
 
 **Why not RPN alone.** S, O and D are ordinal scales, so their product is not mathematically meaningful — an RPN of 100 arising from 10 × 10 × 1 describes a different problem from 5 × 5 × 4. High-severity modes are therefore actioned on severity, consistent with ISO 14971, which directs that risk be evaluated on the basis of severity where the probability of occurrence of harm cannot be reliably estimated. That is the situation here, since no physical units have been built or tested. AIAG-VDA's replacement of RPN with Action Priority reflects the same criticism in an automotive context; it is cited as supporting rationale only and is not a medical device requirement.
 
-Applying the rule: **eight of ten** failure modes are actioned. **DF-005 and DF-008** fall below all three thresholds and are recorded as acceptable with the reasoning stated, rather than actioned by default.
+Applying the rule: **nine of eleven** failure modes are actioned. **DF-005 and DF-008** fall below all three thresholds and are recorded as acceptable with the reasoning stated, rather than actioned by default.
+
+**DF-010 fires all three conditions** — S = 9, RPN = 360, and S ≥ 7 with D ≥ 8. It is the only item to do so, and it is the highest-priority output of this analysis.
 
 ---
 
-## 7. Observations
+## 7. Findings
 
-**Anatomical variability is an unstated design input.** Three failure modes — DF-007 (bile duct position), DF-009 (chamber envelope) and, indirectly, DF-003 — arise from the design being dimensioned around a single specimen geometry rather than the range of donor organs. This should be captured explicitly as a design input.
+**An uncontrolled high-severity failure mode.** DF-010 — gas in the perfusion inlet circuit reaching the organ vasculature — has **no prevention or detection control in the current design**. The chamber vent, which an earlier revision of this analysis credited as the control, addresses chamber headspace gas only; because the chamber sits downstream of the organ, it cannot intercept gas travelling up the inlet line. Detection was therefore re-scored from 4 to 8, taking the RPN from 180 to 360. This is the most important result in the document, and it was produced by correcting an assumption rather than by adding a row.
 
-**Four controls use inherent safety by design** rather than inspection or warning: the asymmetric keying feature in DF-003, header sizing so distribution is insensitive to tolerance in DF-004, the oversized cradle window in DF-006, and in DF-010 a vent at the highest point of the chamber so entrapped gas escapes by buoyancy rather than requiring detection and intervention. Under the ISO 14971 control hierarchy these rank above protective measures and information for safety.
+**A failure mode the analysis did not originally contain.** DF-011 — vent occlusion raising chamber headspace pressure and opposing hepatic venous drainage — emerged from examining the vent's actual functions. It shares its harm with DF-008, which reached the same effect by a different route.
 
-**The vent control carries an orientation dependency.** Because it relies on buoyancy, the DF-010 control is effective only in the intended operating orientation. Gas clearance under credible off-axis orientations is identified as an open verification item.
+**The vent is a three-function port.** Pressure relief during filling, sterile barrier, and filtered gas supply to the headspace. Each function has its own failure mode and its own verification need; only pressure relief is addressed in this revision.
+
+**Anatomical variability is an unstated design input.** DF-007 (bile duct position), DF-009 (chamber envelope) and, indirectly, DF-003 all arise from the design being dimensioned around a single specimen geometry rather than the range of donor organs. This should be captured explicitly as a design input.
+
+**Four controls use inherent safety by design** rather than inspection or warning: the asymmetric keying feature in DF-003, header sizing so distribution is insensitive to tolerance in DF-004, the oversized cradle window in DF-006, and in DF-011 a passive vent rather than an active pressure-relief mechanism. Under the ISO 14971 control hierarchy these rank above protective measures and information for safety.
 
 **Two recommended actions are executable now** against the existing CFD model: the worst-case tolerance study in DF-004 and the maximum-offset study in DF-006.
 
 ---
 
-## 8. Limitations
+## 8. Open inputs
+
+These are inputs the analysis needs and does not yet have. They are recorded rather than assumed.
+
+| Input | Needed for | Status |
+|---|---|---|
+| Maximum credible chamber fill rate | Vent and filter sizing; DF-011 acceptance limit | Not determined; depends on pump selection |
+| Tolerable chamber headspace pressure | DF-011 acceptance limit | To be derived from tolerable hepatic venous back-pressure |
+| Gas control method for the inlet circuit | DF-010 | Design decision not yet taken |
+| Chamber and lid material | Optical access for visual detection controls; biocompatibility; sterilisation compatibility | Not selected |
+| Anatomical range of donor organ size and bile duct position | DF-007, DF-009 | Not specified |
+
+---
+
+## 9. Limitations
 
 - Single analyst. A design FMEA is normally cross-functional, across design, manufacturing, quality and clinical input.
 - No physical units built or tested; all occurrence ratings are engineering judgement.
 - Selected principal functions only; not exhaustive.
 - Process failure modes, software behaviour and use-related errors are out of scope and are not analysed elsewhere for this project at present.
+- Physiological limits referenced in the reasoning have not been sourced from the perfusion literature and are identified as open inputs.
 
 ---
 
@@ -296,5 +336,6 @@ Applying the rule: **eight of ten** failure modes are actioned. **DF-005 and DF-
 
 | Rev | Description |
 |---|---|
-| 1.0 | Initial issue |
-| 1.1 | DF-010 prevention and detection controls corrected to reflect the vent-based design actually implemented, replacing a bubble-detector control carried over in error from a template. Section 7 updated accordingly, and the orientation dependency of the vent control recorded. |
+| 1.0 | Initial issue. Ten failure modes. |
+| 1.1 | DF-010 prevention and detection controls corrected to reflect the vent-based design, replacing a bubble-detector control carried over in error from a template. |
+| 1.2 | Perfusion architecture clarified: the chamber is a collection bath downstream of the organ. DF-010 consequently found to have **no** control, since the chamber vent cannot intercept gas in the inlet line; detection re-scored 4 → 8 and RPN 180 → 360. DF-011 added for vent occlusion raising chamber headspace pressure. Section 8 added to record open inputs rather than assume them. |

@@ -20,7 +20,7 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 
 | Document | Status |
 |---|---|
-| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete |
+| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete, Rev 1.2 |
 | ELAP-RMF-001 — Risk management file (ISO 14971) | In progress |
 | ELAP-RMP-001 — Risk management plan | In progress |
 | ELAP-SRS-001 — Design inputs specification | In progress |
@@ -40,9 +40,13 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 
 **The threshold applied in both directions.** Eight of ten modes are actioned; two are recorded as acceptable with the reasoning stated. A sheet where everything triggers action is a sheet where the threshold is doing nothing.
 
-**Controls at the top of the hierarchy.** Four failure modes are controlled by inherent safety in the design — asymmetric keying so incorrect assembly is physically impossible, an oversized window so misalignment cannot obstruct flow, header sizing so distribution is insensitive to tolerance, and a vent at the highest point of the chamber so entrapped gas escapes by buoyancy rather than requiring detection and intervention — rather than by inspection or warnings. The vent control's dependence on orientation is recorded as an open verification item.
+**Controls at the top of the hierarchy.** Four failure modes are controlled by inherent safety in the design — asymmetric keying so incorrect assembly is physically impossible, an oversized window so misalignment cannot obstruct flow, header sizing so distribution is insensitive to tolerance, and a passive vent rather than an active pressure-relief mechanism. Under the ISO 14971 hierarchy these rank above protective measures and information for safety.
 
-**A hazard found that the risk file had missed.** Tracing each failure effect to the risk management file showed that biliary obstruction and bile contamination of the perfusate were not represented by any existing hazard. That is the reason to run a bottom-up analysis alongside a top-down one, and it is recorded in section 5.
+**An uncontrolled failure mode, found by correcting an assumption.** The highest-severity item in the analysis — gas in the perfusion inlet circuit reaching the organ vasculature — was originally credited to a control that cannot work. The chamber vent sits downstream of the organ, so it cannot intercept gas travelling up the inlet line. Detection was re-scored from 4 to 8 and the RPN went from 180 to 360, making it the only item to fire all three action criteria. The design currently has no control for it, and the document says so.
+
+**A hazard the risk file had missed.** Tracing each failure effect to the risk management file showed that biliary obstruction and bile contamination of the perfusate were not represented by any existing hazard. That is the reason to run a bottom-up analysis alongside a top-down one, and it is recorded in section 5.
+
+**Open inputs recorded, not assumed.** Section 8 lists what the analysis needs and does not have — maximum fill rate, tolerable chamber pressure, the gas control method for the inlet circuit, material selection, and the anatomical range of donor organs. Each is named rather than filled with a plausible number.
 
 **Limitations stated rather than hidden.** Single analyst, no test data behind the occurrence ratings, selected functions only, and a CFD run that does not evidence thermal performance because it was isothermal with no thermal load applied.
 
