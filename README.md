@@ -23,13 +23,13 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 | [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete, Rev 1.3 |
 | [ELAP-DIS-001 — Design Input Specification](ELAP-DIS-001_Design_Input_Specification.md) | Rev 1.3 — partial by design, see below |
 | [ELAP-VP-001 — Verification Protocol, inlet-line gas detection](ELAP-VP-001_Inlet_Gas_Detection_Protocol.md) | Rev 3.2 — written, not executed |
+| [ELAP-TRM-001 — Bidirectional traceability matrix](ELAP-TRM-001_Traceability_Matrix.md) | Rev 1.0 |
 | ELAP-RMF-001 — Risk management file (ISO 14971) | Not started |
 | ELAP-RMP-001 — Risk management plan | Not started |
 | ELAP-VP-002 — Verification protocol, chamber vent | Not started |
-| ELAP-TRM-001 — Bidirectional traceability matrix | Not started |
 | ELAP-GAP-001 — Design control gap assessment, ISO 13485 - 7.3 | Not started |
 
-The three documents present form one complete chain: a failure mode found in the DFMEA, converted into a specified risk control, written as testable requirements, given a verification protocol. That chain is the point of the exercise. The remaining documents are listed honestly as not started rather than as "in progress".
+The four documents present form one chain and one audit of it: a failure mode found in the DFMEA, converted into a specified risk control, written as testable requirements, given a verification protocol — and then traced end to end to find where the chain breaks. The remaining documents are listed honestly as not started rather than as "in progress". The traceability matrix sets the build order for them, in its section 8.
 
 ---
 
@@ -72,6 +72,8 @@ Both errors are in the revision histories with the reasoning, rather than quietl
 **One derivation, one place.** The calculation chain lives in the design input specification; the protocol cites it rather than repeating it. Two copies of the same arithmetic in two documents will diverge at the first change.
 
 **A requirement that existed only to satisfy a test.** The protocol's AC-5 checks that the detector does not halt perfusion on noise — a sound ISO 14971 concern, since a control that introduces a new hazard is not a control. But it traced to no requirement; nothing in the specification prohibited false triggering. REQ-014e was added so the acceptance criterion tests something that was actually specified.
+
+**A traceability matrix that found what the documents could not show on their own.** Running the chain forward — hazard, failure mode, risk control, requirement, verification, evidence — showed that only one of six hazards reaches a verification protocol, and that four break at the same link: they have DFMEA entries with recommended actions and no risk controls. Running it backward showed zero orphan tests. The most useful finding was structural: the `HAZ-` and `RC-` identifier series are used throughout all three documents and defined in none of them, because the risk management file does not yet exist. A reference that resolves nowhere looks correct inside the document that makes it, and only fails when something tries to follow it.
 
 **What the numbers do not establish.** The design input specification ends with what the arithmetic rests on and cannot support: an assumed organ mass, the unresolved operating temperature, an unvalidated bubble transport model, a detection threshold set by what a sensor can detect rather than by what an organ can tolerate, an unstated tubing bore tolerance, a chosen rather than derived response-time budget, and a safety factor named as covering three error sources none of which is quantified. Correct arithmetic on unestablished inputs produces a precise answer, not a right one.
 
