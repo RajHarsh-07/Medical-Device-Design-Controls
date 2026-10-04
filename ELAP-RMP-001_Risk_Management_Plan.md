@@ -5,7 +5,7 @@
 | Field | Entry |
 |---|---|
 | Document number | ELAP-RMP-001 |
-| Revision | 1.0 |
+| Revision | 1.1 |
 | Effective date | 04 October 2026 |
 | Prepared by | Raj Harsh |
 | Standard | ISO 14971:2019, Clause 4 |
@@ -113,6 +113,10 @@ Clause 4.4 d) requires this plan to state criteria for accepting risk **when the
 | **S2** | Acceptable with risk control at any tier, including information for safety. | Control recorded with its reasoning. |
 | **S1** | Acceptable without further control. | Recorded, with the reason for accepting it stated. |
 
+**Acceptability and hierarchy are separate requirements.** Where a tier 1 or tier 2 control is practicable it shall be used, per ISO 14971 clause 7.1 priority order, **irrespective of the severity level**. The criteria above determine whether a residual risk is tolerable; they do not authorise a lower control tier. Neither complexity nor cost is a ground for moving down the hierarchy — see section 4.4.
+
+This was added in Rev 1.1. As Rev 1.0 stood, the S2 row read "acceptable with risk control at any tier" and so permitted information for safety alone for an S2 hazard even where inherently safe design was available — which contradicted section 4.4. The conflict surfaced while working HAZ-002, where an operator-contact cold surface was initially controlled by protective gloves despite insulation being practicable and the exterior material still being unselected.
+
 **Consequence for ELAP-DFMEA-001.** That document actions any failure mode with severity ≥ 8 regardless of RPN. On the mapping in 4.1 that is S4 and above — the same rule as this table, expressed on the ten-point scale. The DFMEA's action threshold is therefore a **consequence of this plan**, not a separate rule invented for the DFMEA.
 
 ### 4.4 Why there is no ALARP band
@@ -156,7 +160,7 @@ Every risk control requires **two** verifications, separately evidenced:
 
 Additionally, per clause 7.5, **each control must be analysed for new or increased risks it introduces**, and any new risk goes back through the full cycle of estimation, evaluation and control.
 
-ELAP-VP-001 section 12 is the worked example: it splits implementation and effectiveness onto separate evidence routes, and REQ-014e exists because RC-010 introduces a new risk — a false trigger halting perfusion unnecessarily.
+ELAP-VP-001 section 12 is the worked example: it splits implementation and effectiveness onto separate evidence routes, and REQ-014e exists because RC-001 introduces a new risk — a false trigger halting perfusion unnecessarily.
 
 ---
 
@@ -176,12 +180,29 @@ ELAP-RMF-001 is the risk management file. The documents constituting it, and the
 
 | Document | Role in the file | Status |
 |---|---|---|
-| ELAP-RMP-001 | This plan | Rev 1.0 |
-| ELAP-RMF-001 | Hazard analysis, risk estimation, risk control, residual risk | **Not written.** Defines `HAZ-` and `RC-` identifiers, which three published documents currently cite with no source. |
-| ELAP-DFMEA-001 | Bottom-up failure mode analysis feeding harms into the file | Rev 1.3 |
-| ELAP-DIS-001 | Requirements derived from risk controls | Rev 1.3 |
-| ELAP-VP-001 | Verification of RC-010 | Rev 3.2, written, not executed |
-| ELAP-TRM-001 | Traceability across the file | Rev 1.0 |
+| ELAP-RMP-001 | This plan | Rev 1.1 |
+| ELAP-RMF-001 | Hazard analysis, risk estimation, risk control, residual risk | **Not written.** Defines `HAZ-` and `RC-` identifiers, which four published documents currently cite with no source. Working draft covers HAZ-001, HAZ-002 and HAZ-007; HAZ-003 to HAZ-006 outstanding. |
+| ELAP-DFMEA-001 | Bottom-up failure mode analysis feeding harms into the file | Rev 1.4 |
+| ELAP-DIS-001 | Requirements derived from risk controls | Rev 1.4 |
+| ELAP-VP-001 | Verification of RC-001 | Rev 3.3, written, not executed |
+| ELAP-TRM-001 | Traceability across the file | Rev 1.1 |
+
+---
+
+## 8.1 Identifier conventions
+
+Each series has exactly one source document. A document may cite an identifier only if that source document defines it.
+
+| Prefix | Meaning | Source document | Assignment rule |
+|---|---|---|---|
+| HAZ- | Hazard | ELAP-RMF-001 | Sequential in order of identification |
+| RC- | Risk control measure | ELAP-RMF-001 | **Sequential in order of definition**, independently of hazard and DFMEA numbering |
+| DF- | Design FMEA line item | ELAP-DFMEA-001 | Sequential within the analysis |
+| REQ- | Design input requirement | ELAP-DIS-001 | Sequential; lettered suffixes where one requirement splits into several |
+| AC- | Acceptance criterion | The verification protocol that contains it | Sequential within that protocol |
+| VP- | Verification protocol | Its own document number | Sequential in order of issue |
+
+**Why risk control identifiers are not mirrored from the hazard or the failure mode.** A single control can mitigate more than one hazard — RC-002 addresses HAZ-002 and, through the cleanable surface it introduces, feeds HAZ-003. A mirrored scheme has no honest identifier for that case. A mirrored scheme also implies identifiers that do not exist: RC-010, named after DF-010, implied nine earlier risk controls that were never defined. It was renumbered to RC-001 in Rev 1.1 of this plan and in the four documents citing it.
 
 ---
 
@@ -214,4 +235,5 @@ Independent review and approval cannot be performed in a single-person exercise.
 
 | Rev | Date | Description | By |
 |---|---|---|---|
+| 1.1 | 04 Oct 2026 | Section 4.3 amended to separate acceptability from control hierarchy: a tier 1 or tier 2 control must be used where practicable irrespective of severity, so the acceptability criteria no longer authorise a lower tier. The conflict with section 4.4 was found while working HAZ-002. Section 8.1 added, recording the identifier conventions and the rule that risk control identifiers are assigned sequentially in order of definition. RC-010 renumbered to RC-001 throughout. | Raj Harsh |
 | 1.0 | 04 Oct 2026 | Initial issue. Written against the seven requirements of ISO 14971:2019 clause 4.4, with sections numbered to match. Establishes a five-level severity scale with an explicit mapping to the ten-point scale in ELAP-DFMEA-001. Records that probability of occurrence of harm cannot be estimated for this device and sets severity-only acceptability criteria accordingly, per clause 4.4 d). Two-zone criteria with no ALARP band, on the basis that ISO 14971:2019 removed cost as grounds for stopping risk reduction and EU MDR Annex I GSPR 4 requires reduction as far as possible. Records that overall residual risk cannot be evaluated because no risk control has been verified. | Raj Harsh |

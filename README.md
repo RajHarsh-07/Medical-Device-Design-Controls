@@ -20,11 +20,11 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 
 | Document | Status |
 |---|---|
-| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete, Rev 1.3 |
-| [ELAP-DIS-001 — Design Input Specification](ELAP-DIS-001_Design_Input_Specification.md) | Rev 1.3 — partial by design, see below |
-| [ELAP-VP-001 — Verification Protocol, inlet-line gas detection](ELAP-VP-001_Inlet_Gas_Detection_Protocol.md) | Rev 3.2 — written, not executed |
-| [ELAP-TRM-001 — Bidirectional traceability matrix](ELAP-TRM-001_Traceability_Matrix.md) | Rev 1.0 |
-| [ELAP-RMP-001 — Risk management plan](ELAP-RMP-001_Risk_Management_Plan.md) | Rev 1.0 |
+| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete, Rev 1.4 |
+| [ELAP-DIS-001 — Design Input Specification](ELAP-DIS-001_Design_Input_Specification.md) | Rev 1.4 — partial by design, see below |
+| [ELAP-VP-001 — Verification Protocol, inlet-line gas detection](ELAP-VP-001_Inlet_Gas_Detection_Protocol.md) | Rev 3.3 — written, not executed |
+| [ELAP-TRM-001 — Bidirectional traceability matrix](ELAP-TRM-001_Traceability_Matrix.md) | Rev 1.1 |
+| [ELAP-RMP-001 — Risk management plan](ELAP-RMP-001_Risk_Management_Plan.md) | Rev 1.1 |
 | ELAP-RMF-001 — Risk management file (ISO 14971) | Not started |
 | ELAP-VP-002 — Verification protocol, chamber vent | Not started |
 | ELAP-GAP-001 — Design control gap assessment, ISO 13485 - 7.3 | Not started |
@@ -55,7 +55,7 @@ The five documents present form one chain, one audit of it, and the plan that se
 
 ## What the requirements and protocol demonstrate
 
-**A recommended action carried through to a verifiable requirement.** DF-010 recommended inlet-line gas detection. That was adopted as risk control RC-010, specified as four separately testable requirements, and given a protocol. The chain is traceable end to end in the three documents.
+**A recommended action carried through to a verifiable requirement.** DF-010 recommended inlet-line gas detection. That was adopted as risk control RC-001, specified as four separately testable requirements, and given a protocol. The chain is traceable end to end in the three documents.
 
 **A requirement defect found and recorded.** The original REQ-014 combined a detection threshold and a response time in one sentence with both numbers blank — not independently testable, and nothing to test against. It was split into four requirements and the defect recorded in the specification's section 4, which is what ISO 13485 - 7.3.3 asks for.
 
@@ -78,6 +78,8 @@ Both errors are in the revision histories with the reasoning, rather than quietl
 **A plan written to a clause list rather than a template.** ELAP-RMP-001 is structured against the seven things ISO 14971:2019 clause 4.4 actually requires, with its sections numbered to match, so conformance can be checked rather than asserted. Three decisions in it are worth naming. Probability of occurrence of harm cannot be estimated for this device — no unit exists, no test data, no predecessor — so risk is evaluated on severity alone, which is what clause 4.4 d) exists to permit. The DFMEA's severity-weighted action threshold then becomes a consequence of the plan rather than a rule invented separately for the DFMEA. And there is no ALARP band, because ISO 14971:2019 removed cost as grounds for stopping risk reduction and EU MDR Annex I GSPR 4 requires reduction as far as possible without economic consideration.
 
 **Two required things the plan declines to claim.** Overall residual risk is not evaluated, because no risk control in the file has been verified — the method is defined and stated to be inapplicable. And production and post-production information is marked not applicable with the reason given, rather than left blank. A required clause element silently blank is a gap; marked with its reason, it is a scope decision.
+
+**An identifier scheme fixed after it had already failed twice.** A verification protocol was numbered VP-007 when no VP-001 to VP-006 existed, and a risk control was numbered RC-010 after the DFMEA item it came from, implying nine earlier controls that were never defined. Both implied documents that did not exist. ELAP-RMP-001 section 8.1 now records one source document per identifier series and the rule that risk control identifiers are assigned sequentially in order of definition — not mirrored from a hazard or a failure mode, because a single control can serve several hazards and a mirrored scheme has no honest number for that.
 
 **What the numbers do not establish.** The design input specification ends with what the arithmetic rests on and cannot support: an assumed organ mass, the unresolved operating temperature, an unvalidated bubble transport model, a detection threshold set by what a sensor can detect rather than by what an organ can tolerate, an unstated tubing bore tolerance, a chosen rather than derived response-time budget, and a safety factor named as covering three error sources none of which is quantified. Correct arithmetic on unestablished inputs produces a precise answer, not a right one.
 

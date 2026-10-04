@@ -5,7 +5,7 @@
 | Field | Entry |
 |---|---|
 | Document number | ELAP-TRM-001 |
-| Revision | 1.0 |
+| Revision | 1.1 |
 | Effective date | 03 October 2026 |
 | Prepared by | Raj Harsh |
 | Scope of this revision | The design control artefacts that exist: ELAP-DFMEA-001 Rev 1.3, ELAP-DIS-001 Rev 1.3, ELAP-VP-001 Rev 3.2 |
@@ -48,7 +48,7 @@ A matrix that only runs forward finds gaps but not orphans. One that only runs b
 
 | Hazard | DFMEA item | Risk control | Requirement | Verification | Evidence | Chain status |
 |---|---|---|---|---|---|---|
-| **HAZ-001** Gas in the perfusion circuit reaching the organ vasculature | DF-010 (S 9, O 5, D 8, RPN 360) | RC-010 — inlet-line gas detection with pump interlock | REQ-014a, REQ-014b, REQ-014c, REQ-014e | ELAP-VP-001, AC-1, AC-2, AC-3, AC-5 | None. Protocol written, not executed. | **Specified end to end. Not verified.** |
+| **HAZ-001** Gas in the perfusion circuit reaching the organ vasculature | DF-010 (S 9, O 5, D 8, RPN 360) | RC-001 — inlet-line gas detection with pump interlock | REQ-014a, REQ-014b, REQ-014c, REQ-014e | ELAP-VP-001, AC-1, AC-2, AC-3, AC-5 | None. Protocol written, not executed. | **Specified end to end. Not verified.** |
 | **HAZ-002** Thermal | *No DFMEA entry* | — | — | — | — | **Not analysed.** Thermal performance is out of scope of ELAP-DFMEA-001 Rev 1.3 section 1, and is not analysed elsewhere. |
 | **HAZ-003** Contamination of perfusate; infection risk | DF-001, DF-002 | *None defined* | *None* | *None* | — | **Breaks at risk control.** Both DFMEA items carry recommended actions; neither has been converted into a control. |
 | **HAZ-004** Loss of perfusion, mechanical and ECM damage to the organ | DF-003, DF-004, DF-005, DF-006, DF-008, DF-009, DF-011 | *None defined* | *None* | *None* | — | **Breaks at risk control.** Seven failure modes, five of them actioned, no controls defined. |
@@ -67,11 +67,11 @@ A matrix that only runs forward finds gaps but not orphans. One that only runs b
 
 | Acceptance criterion | Requirement | Risk control | Hazard | Orphan? |
 |---|---|---|---|---|
-| AC-1 — detection of a 0.113 mL bolus | REQ-014a | RC-010 | HAZ-001 | No |
-| AC-2 — flow halted within 200 ms | REQ-014b | RC-010 | HAZ-001 | No |
-| AC-3 — standoff ≥ 450 mm | REQ-014c | RC-010 | HAZ-001 | No |
+| AC-1 — detection of a 0.113 mL bolus | REQ-014a | RC-001 | HAZ-001 | No |
+| AC-2 — flow halted within 200 ms | REQ-014b | RC-001 | HAZ-001 | No |
+| AC-3 — standoff ≥ 450 mm | REQ-014c | RC-001 | HAZ-001 | No |
 | AC-4 — bulk velocity ≤ 0.45 m/s | REQ-014d | Derived constraint, not a control | HAZ-001, indirectly via REQ-014b | No |
-| AC-5 — no false trigger in 30 minutes | REQ-014e | RC-010, new-risk analysis under ISO 14971 - 7.5 | HAZ-001 | No |
+| AC-5 — no false trigger in 30 minutes | REQ-014e | RC-001, new-risk analysis under ISO 14971 - 7.5 | HAZ-001 | No |
 
 **No orphan tests.** Every acceptance criterion in ELAP-VP-001 traces to a requirement in ELAP-DIS-001. AC-5 was an orphan in an earlier revision of the protocol — it tested a behaviour that no requirement specified — and REQ-014e was written to close it. That correction is recorded in ELAP-DIS-001 Rev 1.3.
 
@@ -83,7 +83,7 @@ ISO 14971:2019 requires each risk control to be verified twice: that it was **im
 
 | Risk control | Implementation verified by | Effectiveness verified by | Status |
 |---|---|---|---|
-| RC-010 | ELAP-VP-001 steps 1, 2, 2a; AC-3 | ELAP-VP-001 steps 6–11; AC-1, AC-2, AC-5 | Both routes specified. Neither executed. |
+| RC-001 | ELAP-VP-001 steps 1, 2, 2a; AC-3 | ELAP-VP-001 steps 6–11; AC-1, AC-2, AC-5 | Both routes specified. Neither executed. |
 
 ---
 
@@ -106,7 +106,7 @@ ISO 14971:2019 requires each risk control to be verified twice: that it was **im
 
 **Forward coverage is poor and backward coverage is complete.** That asymmetry is the expected signature of a design file built depth-first: one hazard has been taken all the way from analysis to an executable protocol, and the rest stop at the DFMEA. It is the honest shape of the work rather than a failure of the matrix.
 
-**Two identifier series are undefined.** HAZ- and RC- are used throughout the published documents and defined in none of them, because ELAP-RMF-001 does not exist. Until it does, every hazard reference in the DFMEA and every RC-010 reference in DIS-001 and VP-001 points at nothing. This is the highest-priority gap the matrix found, and it was not visible from inside any individual document.
+**Two identifier series are undefined.** HAZ- and RC- are used throughout the published documents and defined in none of them, because ELAP-RMF-001 does not exist. Until it does, every hazard reference in the DFMEA and every RC-001 reference in DIS-001 and VP-001 points at nothing. This is the highest-priority gap the matrix found, and it was not visible from inside any individual document.
 
 **HAZ-006 exists only as a note.** It was identified by the DFMEA as a hazard the risk file had missed, and it has still not been written into a risk file. A hazard recorded only in the document that found it is not controlled.
 
@@ -120,8 +120,8 @@ ISO 14971:2019 requires each risk control to be verified twice: that it was **im
 
 In order, because each unblocks the next:
 
-1. **ELAP-RMF-001** — gives HAZ-001 to HAZ-006 and RC-010 a source document, and writes up HAZ-006. Closes the dangling references in three published documents.
-2. **ELAP-RMP-001** — risk acceptability criteria, without which residual risk cannot be evaluated.
+1. **ELAP-RMP-001** — risk acceptability criteria, without which nothing can be evaluated. **Published, Rev 1.1.** This document precedes the risk management file: ISO 14971 Clause 4 defines the criteria that Clause 6 evaluation measures against. Rev 1.0 of this matrix listed the two the other way round, which was wrong.
+2. **ELAP-RMF-001** — gives HAZ-001 to HAZ-007 and RC-001, RC-002 a source document, and writes up HAZ-006. Closes the dangling references in four published documents. **Still unwritten**, so the finding in section 2 stands.
 3. **Risk controls for HAZ-003 and HAZ-004** — converting DFMEA recommended actions into controls and requirements, the step this matrix shows is missing.
 4. **ELAP-VP-002** — the chamber vent protocol created by DF-011.
 
@@ -143,4 +143,5 @@ Independent review and approval cannot be performed in a single-person exercise.
 
 | Rev | Date | Description | By |
 |---|---|---|---|
+| 1.1 | 04 Oct 2026 | Risk control identifier renumbered from RC-010 to RC-001. The original number mirrored DFMEA item DF-010 and so implied RC-001 to RC-009, none of which was ever defined. Risk control identifiers are now assigned sequentially in order of definition, independently of hazard and DFMEA numbering, so that a single control serving more than one hazard has an honest identifier. Convention recorded in ELAP-RMP-001 section 8.1. Build order in section 8 corrected: ELAP-RMP-001 precedes ELAP-RMF-001, because ISO 14971 Clause 4 defines the risk acceptability criteria that Clause 6 evaluation measures against. ELAP-RMP-001 Rev 1.1 is now published; ELAP-RMF-001 remains unwritten, so the HAZ- and RC- identifier series still have no published source document and the finding in section 2 stands. | Raj Harsh |
 | 1.0 | 03 Oct 2026 | Initial issue. Covers ELAP-DFMEA-001 Rev 1.3, ELAP-DIS-001 Rev 1.3 and ELAP-VP-001 Rev 3.2. Records that the HAZ- and RC- identifier series have no source document, that HAZ-006 exists only as a note in the DFMEA, and that four of six hazards break the chain at the risk control step. | Raj Harsh |

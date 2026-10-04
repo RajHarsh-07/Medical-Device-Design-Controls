@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Document number | ELAP-DFMEA-001 |
-| Revision | 1.3 |
+| Revision | 1.4 |
 | Prepared by | Raj Harsh |
 
 > Self-directed exercise on an independent design project. Not industry work. Not a controlled document under any quality system.
@@ -232,7 +232,7 @@ Fixed before scoring. An RPN is meaningless without a stated scale.
 | **Detection control** | None in the inlet circuit. The chamber vent addresses headspace gas only; the chamber is downstream of the organ and cannot intercept gas travelling up the inlet line. |
 | **Detection (D)** | 8 |
 | **RPN** | **360** |
-| **Action** | **Taken forward in Rev 1.3.** Inlet-line gas detection with a pump interlock has been adopted as risk control **RC-010**. It is specified as REQ-014a to REQ-014e in ELAP-DIS-001 and will be verified by ELAP-VP-001. Whether a bubble trap is additionally required remains open — detection halts flow, it does not remove gas already in the line. A priming procedure with a documented air-clearance acceptance criterion is still to be defined. **The scores above are unchanged and remain correct: RC-010 is specified, not built, and not verified. Detection stays at 8 and the RPN at 360 until ELAP-VP-001 has been executed and approved.** |
+| **Action** | **Taken forward in Rev 1.3.** Inlet-line gas detection with a pump interlock has been adopted as risk control **RC-001**. It is specified as REQ-014a to REQ-014e in ELAP-DIS-001 and will be verified by ELAP-VP-001. Whether a bubble trap is additionally required remains open — detection halts flow, it does not remove gas already in the line. A priming procedure with a documented air-clearance acceptance criterion is still to be defined. **The scores above are unchanged and remain correct: RC-001 is specified, not built, and not verified. Detection stays at 8 and the RPN at 360 until ELAP-VP-001 has been executed and approved.** |
 | **Owner** | R. Harsh |
 
 ### DF-011 — Relieve chamber headspace pressure during filling and operation while maintaining a sterile barrier
@@ -305,9 +305,9 @@ Applying the rule: **nine of eleven** failure modes are actioned. **DF-005 and D
 
 **Four controls use inherent safety by design** rather than inspection or warning: the asymmetric keying feature in DF-003, header sizing so distribution is insensitive to tolerance in DF-004, the oversized cradle window in DF-006, and in DF-011 a passive vent rather than an active pressure-relief mechanism. Under the ISO 14971 control hierarchy these rank above protective measures and information for safety.
 
-**A recommended action converted into a specified control.** The DF-010 action has been taken forward as RC-010 — inlet-line gas detection with a pump interlock — specified as four testable requirements in ELAP-DIS-001 and given a verification protocol in ELAP-VP-001. The DF-010 scores are deliberately unchanged: a control that is specified but neither built nor verified reduces no risk, and re-scoring on the strength of a decision rather than evidence is the most common way an FMEA becomes optimistic.
+**A recommended action converted into a specified control.** The DF-010 action has been taken forward as RC-001 — inlet-line gas detection with a pump interlock — specified as four testable requirements in ELAP-DIS-001 and given a verification protocol in ELAP-VP-001. The DF-010 scores are deliberately unchanged: a control that is specified but neither built nor verified reduces no risk, and re-scoring on the strength of a decision rather than evidence is the most common way an FMEA becomes optimistic.
 
-**A conflict found by deriving the limits.** Writing the derivation for RC-010 surfaced a contradiction this analysis had not caught: the device is stated to operate at 4 °C, but the flow figures the control limits rest on are normothermic, 37 °C. Recorded in section 8. It was found by doing the arithmetic rather than by reviewing the text.
+**A conflict found by deriving the limits.** Writing the derivation for RC-001 surfaced a contradiction this analysis had not caught: the device is stated to operate at 4 °C, but the flow figures the control limits rest on are normothermic, 37 °C. Recorded in section 8. It was found by doing the arithmetic rather than by reviewing the text.
 
 **Two recommended actions are executable now** against the existing CFD model: the worst-case tolerance study in DF-004 and the maximum-offset study in DF-006.
 
@@ -321,10 +321,10 @@ These are inputs the analysis needs and does not yet have. They are recorded rat
 |---|---|---|
 | Maximum credible chamber fill rate | Vent and filter sizing; DF-011 acceptance limit | Not determined; depends on pump selection |
 | Tolerable chamber headspace pressure | DF-011 acceptance limit | To be derived from tolerable hepatic venous back-pressure |
-| Gas control method for the inlet circuit | DF-010 | **Closed in Rev 1.3.** Inlet-line gas detection with pump interlock adopted as RC-010; specified in ELAP-DIS-001, verified by ELAP-VP-001. Whether a bubble trap is additionally required remains open. |
+| Gas control method for the inlet circuit | DF-010 | **Closed in Rev 1.3.** Inlet-line gas detection with pump interlock adopted as RC-001; specified in ELAP-DIS-001, verified by ELAP-VP-001. Whether a bubble trap is additionally required remains open. |
 | Chamber and lid material | Optical access for visual detection controls; biocompatibility; sterilisation compatibility | Not selected |
 | Anatomical range of donor organ size and bile duct position | DF-007, DF-009 | Not specified |
-| Operating temperature of the perfusion circuit | Every flow-dependent limit derived for RC-010 | **Conflict.** This analysis states operation at 4 °C and its CFD reference run is isothermal at 4 °C. The vascular flow rates used to derive the RC-010 limits in ELAP-DIS-001 are published targets for *normothermic* perfusion at 37 °C. Hypothermic machine perfusion runs at substantially lower flow, and water viscosity at 4 °C is roughly twice that at 37 °C, changing both velocity and Reynolds number. Either the operating temperature or the flow basis is wrong for this device. Identified 01 Oct 2026 while deriving ELAP-DIS-001 Annex A. |
+| Operating temperature of the perfusion circuit | Every flow-dependent limit derived for RC-001 | **Conflict.** This analysis states operation at 4 °C and its CFD reference run is isothermal at 4 °C. The vascular flow rates used to derive the RC-001 limits in ELAP-DIS-001 are published targets for *normothermic* perfusion at 37 °C. Hypothermic machine perfusion runs at substantially lower flow, and water viscosity at 4 °C is roughly twice that at 37 °C, changing both velocity and Reynolds number. Either the operating temperature or the flow basis is wrong for this device. Identified 01 Oct 2026 while deriving ELAP-DIS-001 Annex A. |
 
 ---
 
@@ -345,4 +345,5 @@ These are inputs the analysis needs and does not yet have. They are recorded rat
 | 1.0 | Sep 2026 | Initial issue. Ten failure modes. | Raj Harsh |
 | 1.1 | Sep 2026 | DF-010 prevention and detection controls corrected to reflect the vent-based design, replacing a bubble-detector control carried over in error from a template. | Raj Harsh |
 | 1.2 | Sep 2026 | Perfusion architecture clarified: the chamber is a collection bath downstream of the organ. DF-010 consequently found to have **no** control, since the chamber vent cannot intercept gas in the inlet line; detection re-scored 4 → 8 and RPN 180 → 360. DF-011 added for vent occlusion raising chamber headspace pressure. Section 8 added to record open inputs rather than assume them. | Raj Harsh |
-| 1.3 | 01 Oct 2026 | DF-010 recommended action taken forward: inlet-line gas detection with pump interlock adopted as risk control **RC-010**, specified as REQ-014a to REQ-014e in ELAP-DIS-001 and given verification protocol ELAP-VP-001. DF-010 scores deliberately unchanged — the control is specified, not built or verified. Stale reference in DF-011 corrected from ELAP-VP-007 to ELAP-VP-002. New open input recorded: a conflict between the 4 °C operating temperature stated here and the 37 °C normothermic basis of the flow rates behind the RC-010 limits. | Raj Harsh |
+| 1.4 | 04 Oct 2026 | Risk control identifier renumbered from RC-010 to RC-001. The original number mirrored DFMEA item DF-010 and so implied RC-001 to RC-009, none of which was ever defined. Risk control identifiers are now assigned sequentially in order of definition, independently of hazard and DFMEA numbering, so that a single control serving more than one hazard has an honest identifier. Convention recorded in ELAP-RMP-001 section 8.1. | Raj Harsh |
+| 1.3 | 01 Oct 2026 | DF-010 recommended action taken forward: inlet-line gas detection with pump interlock adopted as risk control **RC-001**, specified as REQ-014a to REQ-014e in ELAP-DIS-001 and given verification protocol ELAP-VP-001. DF-010 scores deliberately unchanged — the control is specified, not built or verified. Stale reference in DF-011 corrected from ELAP-VP-007 to ELAP-VP-002. New open input recorded: a conflict between the 4 °C operating temperature stated here and the 37 °C normothermic basis of the flow rates behind the RC-001 limits. | Raj Harsh |
