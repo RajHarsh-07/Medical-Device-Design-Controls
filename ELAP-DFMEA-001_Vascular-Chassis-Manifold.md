@@ -3,7 +3,7 @@
 | | |
 |---|---|
 | Document number | ELAP-DFMEA-001 |
-| Revision | 1.4 |
+| Revision | 1.6 |
 | Prepared by | Raj Harsh |
 
 > Self-directed exercise on an independent design project. Not industry work. Not a controlled document under any quality system.
@@ -23,6 +23,10 @@
 | **Team / reviewers** | Raj Harsh — sole analyst. Limitation: a design FMEA is normally conducted cross-functionally, across design, manufacturing, quality and clinical input. A single-analyst analysis is more exposed to blind spots, and this is recorded as a limitation of the exercise. |
 | **Action threshold rule applied** | Any failure mode with S ≥ 8 is actioned regardless of RPN. Any failure mode with RPN ≥ 100 is actioned. Any failure mode with S ≥ 7 and D ≥ 7 is actioned regardless of RPN. |
 | **Justification for that rule** | RPN alone is unsuitable as a sole decision rule. S, O and D are ordinal scales, so their product is not mathematically meaningful — an RPN of 100 arising from 10 × 10 × 1 describes a different problem from 5 × 5 × 4. High-severity modes are therefore actioned on severity, consistent with ISO 14971, which directs that risk be evaluated on the basis of severity where the probability of occurrence of harm cannot be reliably estimated. That is the situation here, since no physical units have been built or tested. AIAG-VDA's replacement of RPN with Action Priority reflects the same criticism in an automotive context; it is cited as supporting rationale only and is not a medical device requirement. |
+
+**Intended use.** Stated in full in ELAP-RMF-001 section 1.1. In short: ex vivo decellularization of a whole human liver at 4 °C, followed by recellularization at 37 °C. This analysis was written before the intended use was documented, and covers the **decellularization phase** only.
+
+**Perfusate.** Modelled as water in the referenced CFD run. The actual phase 1 perfusate is a sequence of chelating and detergent solutions — EDTA, sodium deoxycholate, Triton X-100, protease inhibitor — whose bulk properties are close to water but which are **cytotoxic**. Residue in the scaffold is itself a hazard; see ELAP-RMF-001 HAZ-006.
 
 **Perfusion architecture.** Perfusate is pumped into the organ vasculature (portal vein and hepatic artery), passes through the organ, drains into the chamber as a bath, and returns to the circuit. The chamber is therefore downstream of the organ. A Ø5 mm filtered vent in the chamber lid serves three functions: pressure relief during filling, a sterile barrier, and filtered gas supply to the headspace.
 
@@ -263,17 +267,19 @@ Every failure effect constituting harm must appear in the risk management file (
 | DF-001 | Contamination of perfusate; infection risk | HAZ-003 | Yes |
 | DF-002 | Contamination of perfusate; infection risk | HAZ-003 | Yes |
 | DF-003 | Loss of perfusion; mechanical damage to organ | HAZ-004 | Yes |
-| DF-004 | ECM damage and regional ischaemia | HAZ-004 | Yes |
+| DF-004 | ECM damage and regional ischaemia | HAZ-008 | Yes |
 | DF-005 | Non-uniform perfusion; mechanical stress on organ | HAZ-004 | Yes |
-| DF-006 | ECM damage from elevated wall shear | HAZ-004 | Yes |
-| DF-007 | Cholestatic injury; wrong viability assessment | HAZ-005 | Partial — see note |
-| DF-008 | Vascular distension; oedema; loss of perfusion | HAZ-004 | Yes |
+| DF-006 | ECM damage from elevated wall shear | HAZ-008 | Yes |
+| DF-007 | Cholestatic injury; wrong viability assessment | HAZ-005, HAZ-006 | Yes — HAZ-006 now written |
+| DF-008 | Vascular distension; oedema; loss of perfusion | HAZ-008 | Yes |
 | DF-009 | Localised compression; regional ischaemia | HAZ-004 | Yes |
-| DF-011 | Venous outflow obstruction; distension and oedema | HAZ-004 | Yes |
+| DF-011 | Venous outflow obstruction; distension and oedema | HAZ-008 | Yes |
 
-**Note on DF-007.** HAZ-005 (erroneous measurement) covers the loss of bile output as a viability indicator. It does not cover biliary back-pressure causing cholestatic injury, nor bile leakage into the perfusate where bile salts are cytotoxic. These effects are not represented by any existing hazard in ELAP-RMF-001. A new hazard, HAZ-006 — biliary obstruction and bile contamination of the perfusate — is required. **Identified by this DFMEA.**
+**Note on DF-007.** HAZ-005 (erroneous measurement) covers the loss of bile output as a viability indicator. It does not cover biliary back-pressure causing cholestatic injury, nor bile leakage into the perfusate where bile salts are cytotoxic. These effects are not represented by any existing hazard in ELAP-RMF-001. A new hazard, HAZ-006 — bile outside its intended drainage path — was required. **Identified by this DFMEA**, and written up in ELAP-RMF-001 Rev 1.0 section 7.
 
-**Note on HAZ-002.** HAZ-002 (thermal) has no corresponding DFMEA entry. Thermal performance is outside the scope of this analysis, as recorded in section 1.
+**Note on HAZ-002 and HAZ-007.** Neither has a DFMEA entry. ELAP-RMF-001 Rev 1.0 splits thermal into HAZ-002, cold external surfaces harming the operator, and HAZ-007, loss of thermal control of the perfusate harming the organ. Both are outside the scope of this analysis: a design FMEA starts from component functions, and neither an operator's hands nor ambient heat ingress is a component.
+
+**Note on the HAZ-004 split.** This table originally mapped seven failure modes to HAZ-004. ELAP-RMF-001 Rev 1.0 splits them, on the basis that a hazard is defined by its source: DF-003, DF-005 and DF-009 are mechanical and remain HAZ-004; DF-004, DF-006, DF-008 and DF-011 are hydraulic and move to HAZ-008. The mapping above reflects the split.
 
 ---
 
@@ -345,5 +351,7 @@ These are inputs the analysis needs and does not yet have. They are recorded rat
 | 1.0 | Sep 2026 | Initial issue. Ten failure modes. | Raj Harsh |
 | 1.1 | Sep 2026 | DF-010 prevention and detection controls corrected to reflect the vent-based design, replacing a bubble-detector control carried over in error from a template. | Raj Harsh |
 | 1.2 | Sep 2026 | Perfusion architecture clarified: the chamber is a collection bath downstream of the organ. DF-010 consequently found to have **no** control, since the chamber vent cannot intercept gas in the inlet line; detection re-scored 4 → 8 and RPN 180 → 360. DF-011 added for vent occlusion raising chamber headspace pressure. Section 8 added to record open inputs rather than assume them. | Raj Harsh |
+| 1.6 | 04 Oct 2026 | Intended use and perfusate composition recorded in section 1, following ELAP-RMF-001 Rev 1.1. This analysis predates the documented intended use and covers the decellularization phase at 4 degC only. The perfusate is a detergent sequence rather than water: bulk properties are close enough for the CFD, but it is cytotoxic, which makes residue a hazard the analysis did not consider. | Raj Harsh |
+| 1.5 | 04 Oct 2026 | Section 5 hazard mapping updated following ELAP-RMF-001 Rev 1.0. DF-004, DF-006, DF-008 and DF-011 remapped from HAZ-004 to HAZ-008: the risk file splits the original single hazard into mechanical (HAZ-004) and hydraulic (HAZ-008) sources, which need different controls. DF-007 now maps to HAZ-005 and HAZ-006, HAZ-006 having been written up. Note on HAZ-002 expanded to cover HAZ-007. | Raj Harsh |
 | 1.4 | 04 Oct 2026 | Risk control identifier renumbered from RC-010 to RC-001. The original number mirrored DFMEA item DF-010 and so implied RC-001 to RC-009, none of which was ever defined. Risk control identifiers are now assigned sequentially in order of definition, independently of hazard and DFMEA numbering, so that a single control serving more than one hazard has an honest identifier. Convention recorded in ELAP-RMP-001 section 8.1. | Raj Harsh |
 | 1.3 | 01 Oct 2026 | DF-010 recommended action taken forward: inlet-line gas detection with pump interlock adopted as risk control **RC-001**, specified as REQ-014a to REQ-014e in ELAP-DIS-001 and given verification protocol ELAP-VP-001. DF-010 scores deliberately unchanged — the control is specified, not built or verified. Stale reference in DF-011 corrected from ELAP-VP-007 to ELAP-VP-002. New open input recorded: a conflict between the 4 °C operating temperature stated here and the 37 °C normothermic basis of the flow rates behind the RC-001 limits. | Raj Harsh |

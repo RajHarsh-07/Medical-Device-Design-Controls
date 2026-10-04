@@ -8,7 +8,9 @@ Design control and risk management documents produced against **ISO 13485:2016**
 
 ## The device
 
-The **External Liver Assistance Platform (ELAP)** is an ex vivo organ perfusion system I designed independently, built around a precision isolation manifold for decellularised organ scaffolds.
+The **External Liver Assistance Platform (ELAP)** is an ex vivo perfusion system I designed independently, for the **decellularization and subsequent recellularization of a whole human liver**, built around a precision isolation manifold. It runs three phases at two temperatures: decellularization at 4 °C, an enzymatic and wash stage at 37 °C, and recellularization at 37 °C under cell culture.
+
+It is a processing platform rather than a therapy — it never contacts a patient. Harm reaches a patient only through the scaffold it produces, which is intended for implantation.
 
 It won Category 2 of the **D.E.S.I.G.N. for BioE3 Challenge** run by the Department of Biotechnology and BIRAC, Government of India, and two provisional patents have been filed.
 
@@ -20,16 +22,16 @@ It is at design and simulation stage: no prototype, no bench testing, no clinica
 
 | Document | Status |
 |---|---|
-| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Complete, Rev 1.4 |
-| [ELAP-DIS-001 — Design Input Specification](ELAP-DIS-001_Design_Input_Specification.md) | Rev 1.4 — partial by design, see below |
-| [ELAP-VP-001 — Verification Protocol, inlet-line gas detection](ELAP-VP-001_Inlet_Gas_Detection_Protocol.md) | Rev 3.3 — written, not executed |
-| [ELAP-TRM-001 — Bidirectional traceability matrix](ELAP-TRM-001_Traceability_Matrix.md) | Rev 1.1 |
-| [ELAP-RMP-001 — Risk management plan](ELAP-RMP-001_Risk_Management_Plan.md) | Rev 1.1 |
-| ELAP-RMF-001 — Risk management file (ISO 14971) | Not started |
+| [ELAP-DFMEA-001 — Design FMEA, Vascular Chassis Isolation Manifold](ELAP-DFMEA-001_Vascular-Chassis-Manifold.md) | Rev 1.6 |
+| [ELAP-DIS-001 — Design Input Specification](ELAP-DIS-001_Design_Input_Specification.md) | Rev 1.5 — partial by design, see below |
+| [ELAP-VP-001 — Verification Protocol, inlet-line gas detection](ELAP-VP-001_Inlet_Gas_Detection_Protocol.md) | Rev 3.4 — written, not executed |
+| [ELAP-TRM-001 — Bidirectional traceability matrix](ELAP-TRM-001_Traceability_Matrix.md) | Rev 1.4 |
+| [ELAP-RMP-001 — Risk management plan](ELAP-RMP-001_Risk_Management_Plan.md) | Rev 1.4 |
+| [ELAP-RMF-001 — Risk management file (ISO 14971)](ELAP-RMF-001_Risk_Management_File.md) | Rev 1.2 — scoped to one operating phase |
 | ELAP-VP-002 — Verification protocol, chamber vent | Not started |
 | ELAP-GAP-001 — Design control gap assessment, ISO 13485 - 7.3 | Not started |
 
-The five documents present form one chain, one audit of it, and the plan that sets the criteria: a failure mode found in the DFMEA, converted into a specified risk control, written as testable requirements, given a verification protocol — and then traced end to end to find where the chain breaks. The remaining documents are listed honestly as not started rather than as "in progress". The build order for them is set by the traceability matrix, section 8 — corrected in ELAP-RMP-001 section 0, which notes that the matrix had the plan and the risk file the wrong way round against ISO 14971's clause sequence.
+The six documents present form one chain, one audit of it, and the plan that sets the criteria: a failure mode found in the DFMEA, converted into a specified risk control, written as testable requirements, given a verification protocol — and then traced end to end to find where the chain breaks. The remaining documents are listed honestly as not started rather than as "in progress". The build order for them is set by the traceability matrix, section 8 — corrected in ELAP-RMP-001 section 0, which notes that the matrix had the plan and the risk file the wrong way round against ISO 14971's clause sequence.
 
 ---
 
@@ -78,6 +80,20 @@ Both errors are in the revision histories with the reasoning, rather than quietl
 **A plan written to a clause list rather than a template.** ELAP-RMP-001 is structured against the seven things ISO 14971:2019 clause 4.4 actually requires, with its sections numbered to match, so conformance can be checked rather than asserted. Three decisions in it are worth naming. Probability of occurrence of harm cannot be estimated for this device — no unit exists, no test data, no predecessor — so risk is evaluated on severity alone, which is what clause 4.4 d) exists to permit. The DFMEA's severity-weighted action threshold then becomes a consequence of the plan rather than a rule invented separately for the DFMEA. And there is no ALARP band, because ISO 14971:2019 removed cost as grounds for stopping risk reduction and EU MDR Annex I GSPR 4 requires reduction as far as possible without economic consideration.
 
 **Two required things the plan declines to claim.** Overall residual risk is not evaluated, because no risk control in the file has been verified — the method is defined and stated to be inapplicable. And production and post-production information is marked not applicable with the reason given, rather than left blank. A required clause element silently blank is a gap; marked with its reason, it is a scope decision.
+
+**An intended use statement that invalidated part of the analysis — and the sequence that let that happen.** ISO 14971 puts intended use first, in clause 5.2, because severity cannot be judged without knowing what the device is for. The risk file was built from the DFMEA upward and that step was skipped. Writing it afterwards changed four hazards: gas in the circuit harms a decellularizing organ by leaving cellular material behind, not by causing ischaemia, there being no living tissue; a temperature excursion at 4 °C degrades the matrix through endogenous protease activity, not through warm ischaemia; bile output cannot indicate viability in a phase with no hepatocytes, so that hazard is out of scope rather than uncontrolled; and the fluid escaping the biliary path is cytotoxic detergent rather than bile, which raised its severity. The error and the correction are both in the revision history.
+
+**A hazard created by a risk control, and a control conflict it exposed.** Active cooling was adopted to stop the organ warming. Active cooling can also over-cool toward freezing, which destroys the matrix — a new hazard the control introduced, which ISO 14971 clause 7.5 exists to catch. It is controlled by sizing the cooling capacity so sub-zero operation is physically unachievable, which removes the capability rather than detecting the fault. That control then conflicts with the one it was added alongside: the two adjust cooling capacity in opposite directions, and the band satisfying both is recorded as undetermined rather than assumed to exist.
+
+**A rejected control option, recorded with what the rejection does not establish.** A bubble trap would remove gas rather than merely detecting it, ranking higher in the control hierarchy. It was rejected on three grounds — an extra interface in the sterile barrier, a deliberate gas reservoir that a transient can release downstream, and an added use step in a device whose use-related risk is uncontrolled. The file records the rejection *and* records that the trade is unquantified, so reduction as far as possible is argued rather than demonstrated and the residual risk cannot be called acceptable on that basis.
+
+**Nine foreseeable misuse cases, none controlled, recorded as such.** Misuse is not failure — the device works correctly and harm follows anyway: a single-use chassis cleaned and reused, a wash phase shortened to save time, an arterial line connected to the portal vein. Controlling them needs IEC 62366-1 usability engineering, which no document in this set covers. Two reach harms assessed at S4 and S5, so the file states plainly that declining to control them does not make them acceptable — it means use-related risk cannot be concluded acceptable, and the file does not attempt to.
+
+**A limit set marked provisional rather than quietly carried.** The velocity limits in the design input specification derive from normothermic preservation flow rates, and the device performs cold decellularization. Worse, whole human liver decellularization is pressure-controlled at 120 mmHg — flow is an *output* that rises through the run as scaffold resistance falls, so there is no fixed maximum flow to design against. The derivation method survives; the input does not. The annex keeps the superseded figures so the chain stays readable, with a banner saying what is sound, what is not, and that the error direction is conservative.
+
+**A risk management file, and what tracing it revealed.** ELAP-RMF-001 identifies nine hazards and defines twenty-five risk controls, sixteen of them tier 1 inherently safe design rather than protective measures or warnings. Four of the nine hazards were not found by the design FMEA: two fall outside its scope, since it starts from component functions and neither an operator's hands nor ambient heat ingress is a component, and the third was found by the traceability matrix. The seven failure modes the DFMEA had mapped to a single hazard are split into mechanical and hydraulic sources, on the basis that a hazard is defined by its source and the two need different controls.
+
+**The chain break moved one link, and the matrix says so.** Rev 1.0 of the traceability matrix found that four of six hazards had DFMEA entries and no risk controls. Twenty-four controls now exist, so every hazard has one — and the break moves to the requirement step, where twenty-three of twenty-four controls have nothing in the design input specification obliging the device to have them. A control with no requirement is an intention, not a control. The coverage table shows Rev 1.0 against Rev 1.2 side by side so the change is visible rather than claimed.
 
 **An identifier scheme fixed after it had already failed twice.** A verification protocol was numbered VP-007 when no VP-001 to VP-006 existed, and a risk control was numbered RC-010 after the DFMEA item it came from, implying nine earlier controls that were never defined. Both implied documents that did not exist. ELAP-RMP-001 section 8.1 now records one source document per identifier series and the rule that risk control identifiers are assigned sequentially in order of definition — not mirrored from a hazard or a failure mode, because a single control can serve several hazards and a mirrored scheme has no honest number for that.
 

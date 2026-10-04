@@ -5,7 +5,7 @@
 | Field | Entry |
 |---|---|
 | Document number | ELAP-RMP-001 |
-| Revision | 1.1 |
+| Revision | 1.4 |
 | Effective date | 04 October 2026 |
 | Prepared by | Raj Harsh |
 | Standard | ISO 14971:2019, Clause 4 |
@@ -26,13 +26,19 @@ ELAP-TRM-001 Rev 1.0 lists this document second in its build order and ELAP-RMF-
 
 ## 1. Scope (clause 4.4 a)
 
-**Device.** The External Liver Assistance Platform, an ex vivo organ perfusion system built around the Vascular Chassis — a precision isolation manifold for decellularised organ scaffolds.
+**Device.** The External Liver Assistance Platform, an ex vivo perfusion system for the **decellularization and subsequent recellularization of a whole human liver**, built around the Vascular Chassis isolation manifold. The intended use is stated in full in **ELAP-RMF-001 section 1.1**, which this plan does not duplicate.
+
+The device is a processing platform, not a therapy. It never contacts a patient; harm reaches a patient only through the scaffold it produces, which is intended for implantation. The recipient is therefore **in scope for harm**, confirmed 04 October 2026.
+
+**Three operating phases at two temperatures:** decellularization at 4 °C, an enzymatic and wash stage at 37 °C, and recellularization at 37 °C under cell culture. Thermal control is a **range** requirement, not a setpoint.
 
 **Life cycle phases covered by this plan.**
 
 | Phase | In scope | Reason |
 |---|---|---|
 | Design and development | **Yes** | The only phase the project has reached |
+| Risk analysis of operating phase 1, decellularization at 4 °C | **Yes** | Analysed in ELAP-RMF-001 Rev 1.1 |
+| Risk analysis of operating phases 2 and 3, at 37 °C | **No** | Not analysed. ELAP-RMF-001 section 1.4 records the scope limit and its consequences. |
 | Production and process validation | No | No production exists or is planned at this stage |
 | Post-production, including market surveillance | No | No units in use; see section 7 |
 | Decommissioning and disposal | No | Not analysed; recorded as a gap in section 9 |
@@ -180,12 +186,12 @@ ELAP-RMF-001 is the risk management file. The documents constituting it, and the
 
 | Document | Role in the file | Status |
 |---|---|---|
-| ELAP-RMP-001 | This plan | Rev 1.1 |
-| ELAP-RMF-001 | Hazard analysis, risk estimation, risk control, residual risk | **Not written.** Defines `HAZ-` and `RC-` identifiers, which four published documents currently cite with no source. Working draft covers HAZ-001, HAZ-002 and HAZ-007; HAZ-003 to HAZ-006 outstanding. |
-| ELAP-DFMEA-001 | Bottom-up failure mode analysis feeding harms into the file | Rev 1.4 |
-| ELAP-DIS-001 | Requirements derived from risk controls | Rev 1.4 |
-| ELAP-VP-001 | Verification of RC-001 | Rev 3.3, written, not executed |
-| ELAP-TRM-001 | Traceability across the file | Rev 1.1 |
+| ELAP-RMP-001 | This plan | Rev 1.4 |
+| ELAP-RMF-001 | Hazard analysis, risk estimation, risk control, residual risk. Also holds the intended use, foreseeable misuse and safety characteristics. | **Rev 1.2.** Defines `HAZ-001` to `HAZ-009` and `RC-001` to `RC-025`. Scoped to operating phase 1. |
+| ELAP-DFMEA-001 | Bottom-up failure mode analysis feeding harms into the file | Rev 1.5 |
+| ELAP-DIS-001 | Requirements derived from risk controls | Rev 1.5 |
+| ELAP-VP-001 | Verification of RC-001 | Rev 3.4, written, not executed |
+| ELAP-TRM-001 | Traceability across the file | Rev 1.4 |
 
 ---
 
@@ -214,7 +220,9 @@ Each series has exactly one source document. A document may cite an identifier o
 | No independent review | Every judgement in this plan is unreviewed, including the acceptability criteria themselves. |
 | Probability cannot be estimated | Risk is evaluated on severity alone. This is permitted by clause 4.4 d) but it is a weaker evaluation than severity and probability together. |
 | No clinical benefit data | Benefit-risk analysis under clause 7.4 cannot be performed. Where a residual risk would need to be weighed against clinical benefit, it cannot be. |
-| Decommissioning and disposal not in scope | A real risk management plan would cover the end of life of a single-use device contaminated with biological material. |
+| Decommissioning and disposal not in scope | A real risk management plan would cover the end of life of a single-use device contaminated with biological material and detergent residue. |
+| Operating phases 2 and 3 not analysed | ELAP-RMF-001 covers decellularization at 4 °C only. Contamination risk worsens in the 37 °C culture phase, and the thermal hazard inverts. |
+| Use-related risk not controlled | ELAP-RMF-001 section 1.2 records nine foreseeable misuse cases, none with a risk control and none planned. Two reach harms assessed at S4 and S5, so the acceptability criteria in section 4.3 are not met for them. IEC 62366-1 usability engineering is outside the scope of every document in this set. |
 | Overall residual risk not evaluated | No control is verified, so section 5 defines a method that cannot yet be applied. |
 
 ---
@@ -235,5 +243,8 @@ Independent review and approval cannot be performed in a single-person exercise.
 
 | Rev | Date | Description | By |
 |---|---|---|---|
+| 1.4 | 04 Oct 2026 | Document list updated for ELAP-RMF-001 Rev 1.2, which adds HAZ-009 and RC-025. Limitation on use-related risk sharpened to record that two of the nine misuse cases reach S4 and S5 harms, so the acceptability criteria of section 4.3 are not met for them and the decision not to control them is a limitation rather than an acceptability judgement. | Raj Harsh |
+| 1.3 | 04 Oct 2026 | Section 1 scope rewritten against the intended use established in ELAP-RMF-001 Rev 1.1: a three-phase decellularization and recellularization platform at two temperatures, so thermal control is a range requirement rather than a setpoint. Recipient confirmed in scope for harm. Lifecycle table now distinguishes operating phase 1, analysed, from phases 2 and 3, not analysed. Three limitations added in section 9: phases 2 and 3 unanalysed, use-related risk uncontrolled, and detergent residue at disposal. | Raj Harsh |
+| 1.2 | 04 Oct 2026 | Document list in section 8 updated: ELAP-RMF-001 Rev 1.0 is issued, so the HAZ- and RC- identifier series now have a source document and the gap recorded in Rev 1.1 is closed. | Raj Harsh |
 | 1.1 | 04 Oct 2026 | Section 4.3 amended to separate acceptability from control hierarchy: a tier 1 or tier 2 control must be used where practicable irrespective of severity, so the acceptability criteria no longer authorise a lower tier. The conflict with section 4.4 was found while working HAZ-002. Section 8.1 added, recording the identifier conventions and the rule that risk control identifiers are assigned sequentially in order of definition. RC-010 renumbered to RC-001 throughout. | Raj Harsh |
 | 1.0 | 04 Oct 2026 | Initial issue. Written against the seven requirements of ISO 14971:2019 clause 4.4, with sections numbered to match. Establishes a five-level severity scale with an explicit mapping to the ten-point scale in ELAP-DFMEA-001. Records that probability of occurrence of harm cannot be estimated for this device and sets severity-only acceptability criteria accordingly, per clause 4.4 d). Two-zone criteria with no ALARP band, on the basis that ISO 14971:2019 removed cost as grounds for stopping risk reduction and EU MDR Annex I GSPR 4 requires reduction as far as possible. Records that overall residual risk cannot be evaluated because no risk control has been verified. | Raj Harsh |
